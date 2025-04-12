@@ -1,0 +1,301 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="me.naza.jandy.chat_app"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="34" />
+10    <!--
+11         The INTERNET permission is required for development. Specifically,
+12         the Flutter tool needs it to communicate with the running application
+13         to allow setting breakpoints, to provide hot reload, etc.
+14    -->
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/home/gabriel/Documentos/ChatApp/android/app/src/debug/AndroidManifest.xml:6:5-66
+15-->/home/gabriel/Documentos/ChatApp/android/app/src/debug/AndroidManifest.xml:6:22-64
+16    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+16-->/home/gabriel/Documentos/ChatApp/android/app/src/main/AndroidManifest.xml:2:5-76
+16-->/home/gabriel/Documentos/ChatApp/android/app/src/main/AndroidManifest.xml:2:22-74
+17    <!--
+18 Required to query activities that can process text, see:
+19         https://developer.android.com/training/package-visibility and
+20         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+21
+22         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin.
+23    -->
+24    <queries>
+24-->/home/gabriel/Documentos/ChatApp/android/app/src/main/AndroidManifest.xml:40:5-45:15
+25        <intent>
+25-->/home/gabriel/Documentos/ChatApp/android/app/src/main/AndroidManifest.xml:41:9-44:18
+26            <action android:name="android.intent.action.PROCESS_TEXT" />
+26-->/home/gabriel/Documentos/ChatApp/android/app/src/main/AndroidManifest.xml:42:13-72
+26-->/home/gabriel/Documentos/ChatApp/android/app/src/main/AndroidManifest.xml:42:21-70
+27
+28            <data android:mimeType="text/plain" />
+28-->/home/gabriel/Documentos/ChatApp/android/app/src/main/AndroidManifest.xml:43:13-50
+28-->/home/gabriel/Documentos/ChatApp/android/app/src/main/AndroidManifest.xml:43:19-48
+29        </intent>
+30        <intent>
+30-->[:file_picker] /home/gabriel/.pub-cache/hosted/pub.dev/file_picker-10.1.1/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:8:9-12:18
+31            <action android:name="android.intent.action.GET_CONTENT" />
+31-->[:file_picker] /home/gabriel/.pub-cache/hosted/pub.dev/file_picker-10.1.1/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:9:13-72
+31-->[:file_picker] /home/gabriel/.pub-cache/hosted/pub.dev/file_picker-10.1.1/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:9:21-69
+32
+33            <data android:mimeType="*/*" />
+33-->/home/gabriel/Documentos/ChatApp/android/app/src/main/AndroidManifest.xml:43:13-50
+33-->/home/gabriel/Documentos/ChatApp/android/app/src/main/AndroidManifest.xml:43:19-48
+34        </intent>
+35    </queries>
+36
+37    <uses-permission android:name="android.permission.VIBRATE" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+37-->[:flutter_local_notifications] /home/gabriel/.pub-cache/hosted/pub.dev/flutter_local_notifications-19.0.0/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:5-66
+37-->[:flutter_local_notifications] /home/gabriel/.pub-cache/hosted/pub.dev/flutter_local_notifications-19.0.0/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:22-63
+38    <!-- <uses-sdk android:minSdkVersion="21"/> -->
+39    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+39-->[com.google.firebase:firebase-database:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0617b6009ae4fedbfac8e84659b89b32/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:22:5-79
+39-->[com.google.firebase:firebase-database:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0617b6009ae4fedbfac8e84659b89b32/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:22:22-76
+40
+41    <permission
+41-->[androidx.core:core:1.15.0] /home/gabriel/.gradle/caches/8.10.2/transforms/3db6d67d3957ef3306fe5dc8dc50642f/transformed/core-1.15.0/AndroidManifest.xml:22:5-24:47
+42        android:name="me.naza.jandy.chat_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+42-->[androidx.core:core:1.15.0] /home/gabriel/.gradle/caches/8.10.2/transforms/3db6d67d3957ef3306fe5dc8dc50642f/transformed/core-1.15.0/AndroidManifest.xml:23:9-81
+43        android:protectionLevel="signature" />
+43-->[androidx.core:core:1.15.0] /home/gabriel/.gradle/caches/8.10.2/transforms/3db6d67d3957ef3306fe5dc8dc50642f/transformed/core-1.15.0/AndroidManifest.xml:24:9-44
+44
+45    <uses-permission android:name="me.naza.jandy.chat_app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+45-->[androidx.core:core:1.15.0] /home/gabriel/.gradle/caches/8.10.2/transforms/3db6d67d3957ef3306fe5dc8dc50642f/transformed/core-1.15.0/AndroidManifest.xml:26:5-97
+45-->[androidx.core:core:1.15.0] /home/gabriel/.gradle/caches/8.10.2/transforms/3db6d67d3957ef3306fe5dc8dc50642f/transformed/core-1.15.0/AndroidManifest.xml:26:22-94
+46
+47    <application
+48        android:name="android.app.Application"
+49        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+49-->[androidx.core:core:1.15.0] /home/gabriel/.gradle/caches/8.10.2/transforms/3db6d67d3957ef3306fe5dc8dc50642f/transformed/core-1.15.0/AndroidManifest.xml:28:18-86
+50        android:debuggable="true"
+51        android:extractNativeLibs="true"
+52        android:icon="@mipmap/ic_launcher"
+53        android:label="Chat App" >
+54        <activity
+55            android:name="me.naza.jandy.chat_app.MainActivity"
+56            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+57            android:exported="true"
+58            android:hardwareAccelerated="true"
+59            android:launchMode="singleTop"
+60            android:taskAffinity=""
+61            android:theme="@style/LaunchTheme"
+62            android:windowSoftInputMode="adjustResize" >
+63
+64            <!--
+65                 Specifies an Android theme to apply to this Activity as soon as
+66                 the Android process has started. This theme is visible to the user
+67                 while the Flutter UI initializes. After that, this theme continues
+68                 to determine the Window background behind the Flutter UI.
+69            -->
+70            <meta-data
+71                android:name="io.flutter.embedding.android.NormalTheme"
+72                android:resource="@style/NormalTheme" />
+73
+74            <intent-filter>
+75                <action android:name="android.intent.action.MAIN" />
+76
+77                <category android:name="android.intent.category.LAUNCHER" />
+78            </intent-filter>
+79        </activity>
+80        <!--
+81             Don't delete the meta-data below.
+82             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+83        -->
+84        <meta-data
+85            android:name="flutterEmbedding"
+86            android:value="2" />
+87
+88        <provider
+88-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:9:9-17:20
+89            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+89-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:10:13-82
+90            android:authorities="me.naza.jandy.chat_app.flutter.image_provider"
+90-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:11:13-74
+91            android:exported="false"
+91-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:12:13-37
+92            android:grantUriPermissions="true" >
+92-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:13:13-47
+93            <meta-data
+93-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:14:13-16:75
+94                android:name="android.support.FILE_PROVIDER_PATHS"
+94-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:15:17-67
+95                android:resource="@xml/flutter_image_picker_file_paths" />
+95-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:16:17-72
+96        </provider> <!-- Trigger Google Play services to install the backported photo picker module. -->
+97        <service
+97-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:19:9-31:19
+98            android:name="com.google.android.gms.metadata.ModuleDependencies"
+98-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:20:13-78
+99            android:enabled="false"
+99-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:21:13-36
+100            android:exported="false" >
+100-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:22:13-37
+101            <intent-filter>
+101-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:24:13-26:29
+102                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+102-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:25:17-94
+102-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:25:25-91
+103            </intent-filter>
+104
+105            <meta-data
+105-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:28:13-30:36
+106                android:name="photopicker_activity:0:required"
+106-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:29:17-63
+107                android:value="" />
+107-->[:image_picker_android] /home/gabriel/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+22/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:30:17-33
+108        </service>
+109        <service
+109-->[:firebase_database] /home/gabriel/.pub-cache/hosted/pub.dev/firebase_database-11.3.5/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:8:9-12:19
+110            android:name="com.google.firebase.components.ComponentDiscoveryService"
+110-->[:firebase_database] /home/gabriel/.pub-cache/hosted/pub.dev/firebase_database-11.3.5/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:8:18-89
+111            android:directBootAware="true"
+111-->[com.google.firebase:firebase-common:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/ec4138de37aaf41c537b7e74e719439c/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:32:13-43
+112            android:exported="false" >
+112-->[com.google.firebase:firebase-database:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0617b6009ae4fedbfac8e84659b89b32/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:28:13-37
+113            <meta-data
+113-->[:firebase_database] /home/gabriel/.pub-cache/hosted/pub.dev/firebase_database-11.3.5/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:9:13-11:85
+114                android:name="com.google.firebase.components:io.flutter.plugins.firebase.database.FlutterFirebaseAppRegistrar"
+114-->[:firebase_database] /home/gabriel/.pub-cache/hosted/pub.dev/firebase_database-11.3.5/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:10:17-127
+115                android:value="com.google.firebase.components.ComponentRegistrar" />
+115-->[:firebase_database] /home/gabriel/.pub-cache/hosted/pub.dev/firebase_database-11.3.5/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:11:17-82
+116            <meta-data
+116-->[:firebase_core] /home/gabriel/.pub-cache/hosted/pub.dev/firebase_core-3.13.0/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:9:13-11:85
+117                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+117-->[:firebase_core] /home/gabriel/.pub-cache/hosted/pub.dev/firebase_core-3.13.0/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:10:17-124
+118                android:value="com.google.firebase.components.ComponentRegistrar" />
+118-->[:firebase_core] /home/gabriel/.pub-cache/hosted/pub.dev/firebase_core-3.13.0/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:11:17-82
+119            <meta-data
+119-->[com.google.firebase:firebase-database:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0617b6009ae4fedbfac8e84659b89b32/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:29:13-31:85
+120                android:name="com.google.firebase.components:com.google.firebase.database.FirebaseDatabaseKtxRegistrar"
+120-->[com.google.firebase:firebase-database:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0617b6009ae4fedbfac8e84659b89b32/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:30:17-120
+121                android:value="com.google.firebase.components.ComponentRegistrar" />
+121-->[com.google.firebase:firebase-database:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0617b6009ae4fedbfac8e84659b89b32/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:31:17-82
+122            <meta-data
+122-->[com.google.firebase:firebase-database:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0617b6009ae4fedbfac8e84659b89b32/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:32:13-34:85
+123                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+123-->[com.google.firebase:firebase-database:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0617b6009ae4fedbfac8e84659b89b32/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:33:17-109
+124                android:value="com.google.firebase.components.ComponentRegistrar" />
+124-->[com.google.firebase:firebase-database:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0617b6009ae4fedbfac8e84659b89b32/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:34:17-82
+125            <meta-data
+125-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/bcc8d2985ec1ab09d1e21c43fe50ab02/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:12:13-14:85
+126                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+126-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/bcc8d2985ec1ab09d1e21c43fe50ab02/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:13:17-116
+127                android:value="com.google.firebase.components.ComponentRegistrar" />
+127-->[com.google.firebase:firebase-common-ktx:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/bcc8d2985ec1ab09d1e21c43fe50ab02/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:14:17-82
+128            <meta-data
+128-->[com.google.firebase:firebase-common:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/ec4138de37aaf41c537b7e74e719439c/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:35:13-37:85
+129                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+129-->[com.google.firebase:firebase-common:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/ec4138de37aaf41c537b7e74e719439c/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:36:17-109
+130                android:value="com.google.firebase.components.ComponentRegistrar" />
+130-->[com.google.firebase:firebase-common:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/ec4138de37aaf41c537b7e74e719439c/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:37:17-82
+131        </service>
+132
+133        <provider
+133-->[com.google.firebase:firebase-common:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/ec4138de37aaf41c537b7e74e719439c/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
+134            android:name="com.google.firebase.provider.FirebaseInitProvider"
+134-->[com.google.firebase:firebase-common:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/ec4138de37aaf41c537b7e74e719439c/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:24:13-77
+135            android:authorities="me.naza.jandy.chat_app.firebaseinitprovider"
+135-->[com.google.firebase:firebase-common:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/ec4138de37aaf41c537b7e74e719439c/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:25:13-72
+136            android:directBootAware="true"
+136-->[com.google.firebase:firebase-common:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/ec4138de37aaf41c537b7e74e719439c/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:26:13-43
+137            android:exported="false"
+137-->[com.google.firebase:firebase-common:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/ec4138de37aaf41c537b7e74e719439c/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:27:13-37
+138            android:initOrder="100" />
+138-->[com.google.firebase:firebase-common:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/ec4138de37aaf41c537b7e74e719439c/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:28:13-36
+139
+140        <activity
+140-->[com.google.android.gms:play-services-base:18.1.0] /home/gabriel/.gradle/caches/8.10.2/transforms/eb80b7c20f86db896fc82173afcd18d6/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
+141            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+141-->[com.google.android.gms:play-services-base:18.1.0] /home/gabriel/.gradle/caches/8.10.2/transforms/eb80b7c20f86db896fc82173afcd18d6/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:19-85
+142            android:exported="false"
+142-->[com.google.android.gms:play-services-base:18.1.0] /home/gabriel/.gradle/caches/8.10.2/transforms/eb80b7c20f86db896fc82173afcd18d6/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:22:19-43
+143            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+143-->[com.google.android.gms:play-services-base:18.1.0] /home/gabriel/.gradle/caches/8.10.2/transforms/eb80b7c20f86db896fc82173afcd18d6/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:21:19-78
+144
+145        <provider
+145-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gabriel/.gradle/caches/8.10.2/transforms/7f01706e438658b6ef4ae1d2c2ecdd14/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:24:9-32:20
+146            android:name="androidx.startup.InitializationProvider"
+146-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gabriel/.gradle/caches/8.10.2/transforms/7f01706e438658b6ef4ae1d2c2ecdd14/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:25:13-67
+147            android:authorities="me.naza.jandy.chat_app.androidx-startup"
+147-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gabriel/.gradle/caches/8.10.2/transforms/7f01706e438658b6ef4ae1d2c2ecdd14/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:26:13-68
+148            android:exported="false" >
+148-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gabriel/.gradle/caches/8.10.2/transforms/7f01706e438658b6ef4ae1d2c2ecdd14/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:27:13-37
+149            <meta-data
+149-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gabriel/.gradle/caches/8.10.2/transforms/7f01706e438658b6ef4ae1d2c2ecdd14/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
+150                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+150-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gabriel/.gradle/caches/8.10.2/transforms/7f01706e438658b6ef4ae1d2c2ecdd14/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
+151                android:value="androidx.startup" />
+151-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/gabriel/.gradle/caches/8.10.2/transforms/7f01706e438658b6ef4ae1d2c2ecdd14/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
+152            <meta-data
+152-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+153                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+153-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+154                android:value="androidx.startup" />
+154-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+155        </provider>
+156
+157        <uses-library
+157-->[androidx.window:window:1.2.0] /home/gabriel/.gradle/caches/8.10.2/transforms/73db24a2829d8fb9cf5663cfbb96cfeb/transformed/jetified-window-1.2.0/AndroidManifest.xml:23:9-25:40
+158            android:name="androidx.window.extensions"
+158-->[androidx.window:window:1.2.0] /home/gabriel/.gradle/caches/8.10.2/transforms/73db24a2829d8fb9cf5663cfbb96cfeb/transformed/jetified-window-1.2.0/AndroidManifest.xml:24:13-54
+159            android:required="false" />
+159-->[androidx.window:window:1.2.0] /home/gabriel/.gradle/caches/8.10.2/transforms/73db24a2829d8fb9cf5663cfbb96cfeb/transformed/jetified-window-1.2.0/AndroidManifest.xml:25:13-37
+160        <uses-library
+160-->[androidx.window:window:1.2.0] /home/gabriel/.gradle/caches/8.10.2/transforms/73db24a2829d8fb9cf5663cfbb96cfeb/transformed/jetified-window-1.2.0/AndroidManifest.xml:26:9-28:40
+161            android:name="androidx.window.sidecar"
+161-->[androidx.window:window:1.2.0] /home/gabriel/.gradle/caches/8.10.2/transforms/73db24a2829d8fb9cf5663cfbb96cfeb/transformed/jetified-window-1.2.0/AndroidManifest.xml:27:13-51
+162            android:required="false" />
+162-->[androidx.window:window:1.2.0] /home/gabriel/.gradle/caches/8.10.2/transforms/73db24a2829d8fb9cf5663cfbb96cfeb/transformed/jetified-window-1.2.0/AndroidManifest.xml:28:13-37
+163
+164        <meta-data
+164-->[com.google.android.gms:play-services-basement:18.3.0] /home/gabriel/.gradle/caches/8.10.2/transforms/d57a1f6c01347d085f9144e73c250e20/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
+165            android:name="com.google.android.gms.version"
+165-->[com.google.android.gms:play-services-basement:18.3.0] /home/gabriel/.gradle/caches/8.10.2/transforms/d57a1f6c01347d085f9144e73c250e20/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
+166            android:value="@integer/google_play_services_version" />
+166-->[com.google.android.gms:play-services-basement:18.3.0] /home/gabriel/.gradle/caches/8.10.2/transforms/d57a1f6c01347d085f9144e73c250e20/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
+167
+168        <receiver
+168-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+169            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+169-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+170            android:directBootAware="false"
+170-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+171            android:enabled="true"
+171-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+172            android:exported="true"
+172-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+173            android:permission="android.permission.DUMP" >
+173-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+174            <intent-filter>
+174-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+175                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+175-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+175-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+176            </intent-filter>
+177            <intent-filter>
+177-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+178                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+178-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+178-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+179            </intent-filter>
+180            <intent-filter>
+180-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+181                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+181-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+181-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+182            </intent-filter>
+183            <intent-filter>
+183-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+184                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+184-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+184-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/gabriel/.gradle/caches/8.10.2/transforms/71c2a5c462ada5f663b8ca591b1907a5/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+185            </intent-filter>
+186        </receiver>
+187    </application>
+188
+189</manifest>
