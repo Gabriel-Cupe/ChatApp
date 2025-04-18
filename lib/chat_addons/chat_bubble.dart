@@ -12,12 +12,12 @@ class ChatBubble extends StatelessWidget {
   final DatabaseService dbService;
 
   const ChatBubble({
-    Key? key,
+    super.key,
     required this.message,
     required this.isMe,
     required this.onStartReply,
     required this.dbService,
-  }) : super(key: key);
+  });
 
   void _showFullImage(BuildContext context, String imageUrl) {
     showModalBottomSheet(
@@ -103,6 +103,7 @@ class ChatBubble extends StatelessWidget {
               ),
               boxShadow: [
                 BoxShadow(
+                  // ignore: deprecated_member_use
                   color: Colors.black.withOpacity(0.1),
                   blurRadius: 6,
                   offset: const Offset(0, 3),
@@ -174,6 +175,7 @@ class ChatBubble extends StatelessWidget {
                       ],
                     ),
                   ],
+                  
                 ),
                 Positioned(
                   bottom: 4,
@@ -200,6 +202,8 @@ Widget _buildImageOrSticker(BuildContext context) {
 
   if (isSticker) {
     return GestureDetector(
+      
+
       onTap: () => _showFullImage(context, message.imageUrl!),
       child: Image.network(
         message.imageUrl!,

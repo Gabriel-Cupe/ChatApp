@@ -1,113 +1,187 @@
+// lib/screens/chat_screen.dart
+import 'dart:async';
 import 'dart:io';
-import 'dart:math';
 import 'dart:typed_data';
+import 'package:chat_app/chat_addons/chat_bubble.dart';
+import 'package:chat_app/chat_addons/confetti_effect.dart';
 import 'package:chat_app/chat_addons/image_service.dart';
+import 'package:chat_app/chat_addons/love_message_dialog.dart';
+import 'package:chat_app/chat_addons/message_input.dart';
+import 'package:chat_app/chat_addons/reply_panel.dart';
 import 'package:chat_app/chat_addons/scroll.dart';
+import 'package:chat_app/models/message_model.dart';
+import 'package:chat_app/models/user_model.dart';
+import 'package:chat_app/notis/timer_menu.dart';
+import 'package:chat_app/services/chat_message_service.dart';
 import 'package:chat_app/services/database_service.dart';
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:universal_html/html.dart' as html;
-import '../models/user_model.dart';
-import '../models/message_model.dart';
-import '../chat_addons/chat_bubble.dart';
-import '../chat_addons/reply_panel.dart';
-import '../chat_addons/message_input.dart';
 
 class ChatScreen extends StatefulWidget {
   final User user;
-  const ChatScreen({Key? key, required this.user}) : super(key: key);
+  const ChatScreen({super.key, required this.user});
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _messageController = TextEditingController();
-  final DatabaseService _databaseService = DatabaseService();
+  final ChatMessageService _messageService = ChatMessageService(DatabaseService());
   final ScrollController _scrollController = ScrollController();
   final FocusNode _focusNode = FocusNode();
-  
-  late Stream<List<Message>> _messagesStream;
+
+  List<Message> _messages = [];
+  bool _isLoadingMore = false;
+  bool _hasMore = true;
+  late StreamSubscription<List<Message>> _messagesSubscription;
+
   Message? _replyingTo;
   bool _showReplyPanel = false;
-  dynamic _selectedImage; // Puede ser File (mobile) o Uint8List (web)
+  dynamic _selectedImage;
   String? _imagePreviewUrl;
   bool _isWeb = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _isWeb = kIsWeb;
-    _messagesStream = _databaseService.getMessages();
-  enableScrollWithKeyboard(_scrollController); // ← aquí lo llamas
+@override
+void initState() {
+  super.initState();
+  _isWeb = kIsWeb;
+  _loadInitialMessages();
+  enableScrollWithKeyboard(_scrollController);
 
-  }
+  final db = _messageService.databaseService;
 
-  @override
-  void dispose() {
-    _messageController.dispose();
-    _scrollController.dispose();
-    _focusNode.dispose();
-    // Limpiar URL de objeto en web
-    if (_isWeb && _imagePreviewUrl != null) {
-      html.Url.revokeObjectUrl(_imagePreviewUrl!);
-    }
-    super.dispose();
-  }
-
-
-Future<void> _sendMessage() async {
-  final text = _messageController.text.trim();
-  
-  // Verificar si tenemos contenido para enviar
-  if (text.isNotEmpty || _selectedImage != null) {
-    String? imageUrl;
-    
-    // Manejo diferente para stickers vs imágenes normales
-    if (_selectedImage is String && (_selectedImage as String).startsWith('http')) {
-      // Es un sticker (ya es una URL)
-      imageUrl = _selectedImage as String;
-    } else if (_selectedImage != null) {
-      // Es una imagen normal que necesita upload
-      if (_isWeb && _selectedImage is Uint8List) {
-        imageUrl = await ImageService.uploadImageFromBytes(_selectedImage);
-      } else if (!_isWeb && _selectedImage is String) {
-        imageUrl = await ImageService.uploadImage(_selectedImage);
+  // Escuchar nuevos mensajes
+  db.newMessageStream.listen((event) {
+    if (event.snapshot.value != null) {
+      final newMessage = Message.fromMap(
+        event.snapshot.key!,
+        Map<String, dynamic>.from(event.snapshot.value as Map),
+      );
+      final exists = _messages.any((m) => m.id == newMessage.id);
+      if (!exists) {
+        setState(() {
+          _messages.add(newMessage);
+        });
+        scrollToBottom();
       }
     }
+  });
 
-    // Enviar el mensaje
-    _databaseService.sendMessage(
-      widget.user.displayName, 
-      text.isNotEmpty ? text : (imageUrl != null ? '[contenido multimedia]' : ''),
-      replyTo: _replyingTo?.id,
-      imageUrl: imageUrl,
-    );
-    
-    // Limpiar el estado
-    _messageController.clear();
+  // Escuchar ediciones
+  db.messageEditStream.listen((event) {
+    if (event.snapshot.value != null) {
+      final updated = Message.fromMap(
+        event.snapshot.key!,
+        Map<String, dynamic>.from(event.snapshot.value as Map),
+      );
+      final index = _messages.indexWhere((m) => m.id == updated.id);
+      if (index != -1) {
+        setState(() {
+          _messages[index] = updated;
+        });
+      }
+    }
+  });
+
+  // Escuchar eliminaciones
+  db.messageDeleteStream.listen((event) {
     setState(() {
-      _selectedImage = null;
-      if (_isWeb && _imagePreviewUrl != null) {
-        html.Url.revokeObjectUrl(_imagePreviewUrl!);
-        _imagePreviewUrl = null;
-      }
+      _messages.removeWhere((m) => m.id == event.snapshot.key);
     });
-    _cancelReply();
-    _scrollToBottom();
-  }
+  });
+
+  _scrollController.addListener(_scrollListener);
 }
 
 
-  void _scrollToBottom() {
+  void _scrollListener() {
+    if (_scrollController.position.pixels <=
+            _scrollController.position.minScrollExtent + 50 &&
+        !_isLoadingMore &&
+        _hasMore) {
+      _loadMoreMessages();
+    }
+  }
+
+  Future<void> _loadInitialMessages() async {
+    final messages = await _messageService.getInitialMessages();
+    if (mounted) {
+      setState(() {
+        _messages = messages;
+      });
+    }
+    scrollToBottom();
+  }
+
+  Future<void> _loadMoreMessages() async {
+    if (_messages.isEmpty) return;
+    _isLoadingMore = true;
+
+    final before = _scrollController.position.pixels;
+    final oldest = _messages.first;
+    final moreMessages = await _messageService.loadMoreMessages(
+        oldest.timestamp.millisecondsSinceEpoch);
+
+    if (mounted) {
+      setState(() {
+        if (moreMessages.isEmpty) {
+          _hasMore = false;
+        } else {
+          _messages = [...moreMessages, ..._messages];
+        }
+      });
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.jumpTo(_scrollController.position.pixels + before);
+    });
+
+    _isLoadingMore = false;
+  }
+
+  Future<void> _sendMessage() async {
+    final text = _messageController.text.trim();
+
+    if (text.isNotEmpty || _selectedImage != null) {
+      String? imageUrl;
+
+      if (_selectedImage is String && (_selectedImage as String).startsWith('http')) {
+        imageUrl = _selectedImage as String;
+      } else if (_selectedImage != null) {
+        if (_isWeb && _selectedImage is Uint8List) {
+          imageUrl = await ImageService.uploadImageFromBytes(_selectedImage);
+        } else if (!_isWeb && _selectedImage is String) {
+          imageUrl = await ImageService.uploadImage(_selectedImage);
+        }
+      }
+
+      await _messageService.sendMessage(
+        sender: widget.user.displayName,
+        text: text.isNotEmpty ? text : (imageUrl != null ? '[contenido multimedia]' : ''),
+        replyTo: _replyingTo?.id,
+        imageUrl: imageUrl,
+      );
+
+      _messageController.clear();
+      if (mounted) {
+        setState(() {
+          _selectedImage = null;
+          if (_isWeb && _imagePreviewUrl != null) {
+            html.Url.revokeObjectUrl(_imagePreviewUrl!);
+            _imagePreviewUrl = null;
+          }
+        });
+      }
+      _cancelReply();
+    }
+  }
+
+  void scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       }
     });
   }
@@ -129,7 +203,6 @@ Future<void> _sendMessage() async {
 
   void _handleImageSelected(dynamic imageData) {
     if (_isWeb && imageData is Uint8List) {
-      // Para web: crear URL temporal para la vista previa
       final blob = html.Blob([imageData]);
       final url = html.Url.createObjectUrlFromBlob(blob);
       setState(() {
@@ -137,25 +210,11 @@ Future<void> _sendMessage() async {
         _imagePreviewUrl = url;
       });
     } else if (!_isWeb && imageData is String) {
-      // Para móvil/desktop
       setState(() {
         _selectedImage = imageData;
       });
     }
   }
-
-
-  void _checkMessageVisibility(Message message) {
-  final RenderObject? renderObject = _scrollController.position.context.storageContext?.findRenderObject();
-  if (renderObject is RenderBox) {
-    final messagePosition = renderObject.localToGlobal(Offset.zero);
-    final screenHeight = MediaQuery.of(context).size.height;
-    
-    if (messagePosition.dy < screenHeight && !message.isSeen && message.sender != widget.user.displayName) {
-      _databaseService.markMessageAsSeen(message.id);
-    }
-  }
-}
 
   Widget _buildImagePreview() {
     if (_selectedImage == null) return const SizedBox.shrink();
@@ -206,228 +265,88 @@ Future<void> _sendMessage() async {
   }
 
   Widget _buildMessageList() {
-    return StreamBuilder<List<Message>>(
-      stream: _messagesStream,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        }
+    return ListView.builder(
+      controller: _scrollController,
+      reverse: false,
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      itemCount: _messages.length,
+      itemBuilder: (context, index) {
+        final message = _messages[index];
+        final isMe = message.sender == widget.user.displayName;
 
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        final messages = snapshot.data ?? [];
-
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          _scrollToBottom();
-        });
-
-        return 
-        ListView.builder(
-          controller: _scrollController,
-          reverse: false,
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          itemCount: messages.length,
-itemBuilder: (context, index) {
-  final message = messages[index];
-  final isMe = message.sender == widget.user.displayName;
-  
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    _checkMessageVisibility(message);
-  });
-
-  return ChatBubble(
-    message: message,
-    isMe: isMe,
-    onStartReply: _startReply,
-    dbService: _databaseService,
-  );
-},
+        return ChatBubble(
+          message: message,
+          isMe: isMe,
+          onStartReply: _startReply,
+          dbService: DatabaseService(),
         );
       },
     );
   }
 
   AppBar _buildAppBar() {
-    return 
-    AppBar(
-    title: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Chat App',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white
-          ),
-        ),
-        Row(
-          children: [
-            Container(
-              width: 10,
-              height: 20,
-              decoration: BoxDecoration(
-                color: Colors.lightGreenAccent,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.lightGreenAccent.withOpacity(0.5),
-                    blurRadius: 4,
-                    spreadRadius: 2,
-                  ),
-                ],
+    return AppBar(
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Chat App', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
+          Row(
+            children: [
+              Container(
+                width: 10,
+                height: 20,
+                decoration: BoxDecoration(
+                  color: Colors.lightGreenAccent,
+                  shape: BoxShape.circle,
+                  boxShadow: [BoxShadow(color: Colors.lightGreenAccent.withOpacity(0.5), blurRadius: 4, spreadRadius: 2)],
+                ),
               ),
-            ),
-            SizedBox(width: 6),
-            Text(
-              '${widget.user.displayName} • En línea',
-              style: TextStyle(
-                fontSize: 10,
-                color: Colors.white.withOpacity(0.9),
+              const SizedBox(width: 6),
+              Text(
+                '${widget.user.displayName} • En línea',
+                style: TextStyle(fontSize: 10, color: Colors.white.withOpacity(0.9)),
               ),
-            ),
-          ],
-        ),
-      ],
-    ),
-    flexibleSpace: Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.blueAccent,
-const Color(0xFFeb3af3),            
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 10,
-            spreadRadius: 2,
+            ],
           ),
         ],
       ),
-    ),
-    elevation: 10,
-    actions: [
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blueAccent, Color(0xFFeb3af3)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+      ),
+      elevation: 10,
+actions: [
+  IconButton(
+    icon: const Icon(Icons.arrow_downward, color: Colors.white),
+    tooltip: 'Ir abajo',
+    onPressed: scrollToBottom,
+  ),
+  const TimerMenu(),
+  IconButton(
+    icon: const Icon(Icons.more_vert, color: Colors.white),
+    onPressed: () {
+      showDialog(
+        context: context,
+        builder: (context) => LoveMessageDialog(onConfetti: () => _showConfetti()),
+      );
+    },
+  ),
+],
 
+    );
+  }
 
-
-IconButton(
-  icon: Icon(Icons.more_vert, color: Colors.white),
-  onPressed: () {
+  void _showConfetti() {
     showDialog(
       context: context,
-      builder: (context) {
-        return Center(
-          child: Container(
-            margin: EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFFFFCDD2), // Rosa claro
-                  Color(0xFFF8BBD0), // Rosa medio
-                ],
-              ),
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.pink.withOpacity(0.3),
-                  blurRadius: 30,
-                  spreadRadius: 5,
-                ),
-              ],
-            ),
-            child: Material(
-              color: Colors.transparent,
-              child: Padding(
-                padding: EdgeInsets.all(30),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Encabezado con corazón
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Icon(
-                          Icons.favorite,
-                          color: Colors.white,
-                          size: 80,
-                        ),
-                        Icon(
-                          Icons.favorite_border,
-                          color: Colors.pink[300],
-                          size: 80,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    
-                    // Mensaje principal
-                    Text(
-                      'Para mi amor',
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Color(0xFF880E4F),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    
-                    // Mensaje aleatorio
-                    Text(
-                      _getRandomLoveMessage(),
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFFC2185B),
-                        height: 1.5,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(height: 25),
-                    
-                    // Efecto de confeti al presionar
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.pink[400],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 12),
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                        _showConfetti(context); // Efecto de confeti
-                      },
-                      child: Text(
-                        'Cerrar con amor',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  },
-)
-
-
-
-    ],
-  );
+      barrierDismissible: false,
+      builder: (context) => const ConfettiEffect(message: '❤ TE AMO JANDYSITA❤'),
+    ).then((_) => Navigator.pop(context));
   }
 
   @override
@@ -440,12 +359,7 @@ IconButton(
             child: Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-   Color(0xFFfff4fc), // Lila suave
-   Color(0xFFfff4fc), // Lila suave
-
-      //Colores del fondo
-                    ],
+                  colors: [Color(0xFFfff4fc), Color(0xFFfff4fc)],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
@@ -459,83 +373,35 @@ IconButton(
               replyingTo: _replyingTo!,
               onCancel: _cancelReply,
             ),
-MessageInput(
-  controller: _messageController,
-  replyingTo: _replyingTo,
-  onCancelReply: _cancelReply,
-  onSend: _sendMessage,
-  onImageSelected: _handleImageSelected,
-  onStickerSelected: (stickerUrl) {
-    _databaseService.sendMessage(
-      widget.user.displayName,
-      '[sticker]',
-      imageUrl: stickerUrl,
-    );
-  },
-)
+          MessageInput(
+            focusNode: _focusNode,
+            controller: _messageController,
+            replyingTo: _replyingTo,
+            onCancelReply: _cancelReply,
+            onSend: _sendMessage,
+            onImageSelected: _handleImageSelected,
+            onStickerSelected: (stickerUrl) {
+              _messageService.sendMessage(
+                sender: widget.user.displayName,
+                text: '[sticker]',
+                imageUrl: stickerUrl,
+              );
+            },
+          ),
         ],
       ),
     );
   }
 
-String _getRandomLoveMessage() {
-  final messages = [
-    'Eres el sol que ilumina mis días más oscuros',
-    'Mi corazón late más fuerte cuando estás cerca',
-    'No hay nada en este mundo que me haga más feliz que tu sonrisa',
-    'Eres mi pensamiento favorito en el día',
-    'El amor que siento por ti crece más cada mañana',
-    'Eres la razón por la que creo en el destino',
-    'Contigo hasta el fin del universo',
-  ];
-  return messages[Random().nextInt(messages.length)];
-}
-
-void _showConfetti(BuildContext context) {
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (context) {
-      return Dialog(
-        backgroundColor: Colors.transparent,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: ConfettiWidget(
-            confettiController: ConfettiController(duration: const Duration(seconds: 1)),
-            blastDirection: -1.0,
-            emissionFrequency: 0.05,
-            numberOfParticles: 50,
-            gravity: 0.2,
-            shouldLoop: false,
-            colors: const [
-              Colors.pink,
-              Colors.red,
-              Colors.white,
-              Colors.pinkAccent,
-            ],
-            child: Center(
-              child: Text(
-                '❤ TE AMO JANDYSITA❤',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 10,
-                      color: Colors.pink,
-                      offset: Offset(2, 2),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-    },
-  ).then((_) => Navigator.pop(context));
-}
-
+  @override
+  void dispose() {
+    _messagesSubscription.cancel();
+    _messageController.dispose();
+    _scrollController.dispose();
+    _focusNode.dispose();
+    if (_isWeb && _imagePreviewUrl != null) {
+      html.Url.revokeObjectUrl(_imagePreviewUrl!);
+    }
+    super.dispose();
+  }
 }

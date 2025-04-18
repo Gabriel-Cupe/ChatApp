@@ -1,3 +1,5 @@
+// ignore_for_file: use_super_parameters, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../models/message_model.dart';
@@ -366,23 +368,22 @@ void _copyToClipboard(BuildContext context) {
   );
 }
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _showModalMenu(context),
-      child: Container(
-        padding: const EdgeInsets.all(6),
-        decoration: BoxDecoration(
-          color: isMe ? Colors.white.withOpacity(0.3) : Colors.white,
-          shape: BoxShape.circle,
-        ),
-        child: Icon(
-          Icons.more_vert,
-          size: 18,
-          color: isMe ? Colors.white70 : Colors.grey[600],
-        ),
+@override
+Widget build(BuildContext context) {
+  return GestureDetector(
+    onTap: () => _showModalMenu(context),
+    behavior: HitTestBehavior.opaque, // Asegura que toda el área sea clickeable
+    child: Container(
+      padding: const EdgeInsets.all(30), // Aumenta el área táctil
+      decoration: const BoxDecoration(
+        color: Colors.transparent, // Fondo completamente transparente
       ),
-    );
-  }
-
+      child: const Icon(
+        Icons.more_vert,
+        size: 0, // Tamaño cero para hacerlo invisible
+        color: Colors.transparent, // Color transparente
+      ),
+    ),
+  );
+}
 }

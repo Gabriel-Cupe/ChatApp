@@ -1,3 +1,5 @@
+// ignore_for_file: use_super_parameters, library_private_types_in_public_api, prefer_final_fields, use_build_context_synchronously, deprecated_member_use
+
 import 'package:chat_app/chat_addons/enter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -14,6 +16,8 @@ class MessageInput extends StatefulWidget {
   final VoidCallback onSend;
   final Function(dynamic) onImageSelected;
   final Function(String) onStickerSelected; // Nueva función para stickers
+final FocusNode? focusNode;
+
 
   const MessageInput({
     Key? key,
@@ -22,7 +26,9 @@ class MessageInput extends StatefulWidget {
     required this.onCancelReply,
     required this.onSend,
     required this.onImageSelected,
-    required this.onStickerSelected, // Nuevo parámetro requerido
+    required this.onStickerSelected,
+       this.focusNode,
+// Nuevo parámetro requerido
   }) : super(key: key);
 
   @override
@@ -162,7 +168,7 @@ Expanded(
               IconButton(
                 icon: const Icon(Icons.emoji_emotions_outlined),
                 tooltip: 'Emojis y Stickers',
-                color: _showEmojiMenu ? Colors.blueAccent : Colors.orangeAccent,
+                color: _showEmojiMenu ? Colors.orangeAccent :Colors.blueAccent ,
                 onPressed: () {
                   setState(() {
                     _showEmojiMenu = !_showEmojiMenu;
@@ -171,6 +177,7 @@ Expanded(
               ),
               Expanded(
                 child: EnterAwareTextField(
+                  focusNode: widget.focusNode, // Aplicamos el FocusNode correctamente
                   controller: widget.controller,
                   hintText: widget.replyingTo != null
                       ? 'Escribe tu respuesta...'

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_const, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 import '../screens/chat_screen.dart';
@@ -75,7 +77,7 @@ class _LoginFormState extends State<LoginForm> {
             style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,
-              color: const Color(0xFF7B1FA2),
+              color: Color(0xFF7B1FA2),
             ),
           ),
           const SizedBox(height: 8),

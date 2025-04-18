@@ -1,0 +1,36 @@
+Estructura del proyecto
+lib/
+│   └── firebase_options.dart
+│   └── main.dart
+│   ├── screens/
+│   │   └── chat_screen.dart
+│   │   └── login_form.dart
+│   │   └── login_screen.dart
+│   ├── services/
+│   │   └── auth_service.dart
+│   │   └── chat_message_service.dart
+│   │   └── database_service.dart
+│   ├── chat_addons/
+│   │   └── chat_bubble.dart
+│   │   └── confetti_effect.dart
+│   │   └── emoji.dart
+│   │   └── enter.dart
+│   │   └── image_service.dart
+│   │   └── image_viewer.dart
+│   │   └── love_message_dialog.dart
+│   │   └── love_message_generator.dart
+│   │   └── message_input.dart
+│   │   └── message_menu.dart
+│   │   └── reply_bubble.dart
+│   │   └── reply_panel.dart
+│   │   └── scroll.dart
+│   │   └── sticker.dart
+│   ├── models/
+│   │   └── message_model.dart
+│   │   └── user_model.dart
+│   ├── notis/
+│   │   └── lifecycle_handler.dart
+│   │   └── message_listener.dart
+│   │   └── notification_service.dart
+│   │   └── timer.dart
+│   │   └── timer_menu.dart

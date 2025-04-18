@@ -8,6 +8,7 @@ class Message {
   final String? imageUrl;
   final bool isSeen; // Nuevo campo
 
+
   Message({
     required this.id,
     required this.sender,

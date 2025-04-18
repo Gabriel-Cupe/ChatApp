@@ -1,13 +1,14 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'emoji_list.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class EmojiPickerWidget extends StatefulWidget {
   final Function(String) onEmojiSelected;
 
-  const EmojiPickerWidget({Key? key, required this.onEmojiSelected}) 
-    : super(key: key);
+  const EmojiPickerWidget({super.key, required this.onEmojiSelected});
 
   @override
   State<EmojiPickerWidget> createState() => _EmojiPickerWidgetState();
@@ -15,51 +16,67 @@ class EmojiPickerWidget extends StatefulWidget {
 
 class _EmojiPickerWidgetState extends State<EmojiPickerWidget> {
   final List<String> _loadedEmojis = [];
-  int _emojiIndex = 0;
   final ScrollController _scrollController = ScrollController();
-  Timer? _loadTimer;
   Timer? _repeatTimer;
   double _currentOffset = 10.0;
   bool _isKeyDown = false;
+  final DatabaseReference _emojiRef = FirebaseDatabase.instance.ref().child('emojis');
 
   @override
   void initState() {
     super.initState();
-    _loadEmojisGradually();
+    _loadEmojisFromFirebase();
     _enableScrollWithKeyboard();
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
-    _loadTimer?.cancel();
     _repeatTimer?.cancel();
     RawKeyboard.instance.removeListener(_handleKeyEvent);
     super.dispose();
   }
 
-  void _loadEmojisGradually() {
-    _loadTimer?.cancel(); // Cancelar cualquier timer existente
-    
-    _loadTimer = Timer.periodic(const Duration(milliseconds: 30), (timer) {
-      if (!mounted) {
-        timer.cancel();
-        return;
-      }
-      
-      if (_emojiIndex < emojiList.length) {
-        final endIndex = (_emojiIndex + 5).clamp(0, emojiList.length);
-        final newEmojis = emojiList.sublist(_emojiIndex, endIndex);
-        
-        setState(() {
-          _loadedEmojis.addAll(newEmojis);
-          _emojiIndex = endIndex;
+Future<void> _loadEmojisFromFirebase() async {
+  try {
+    final snapshot = await _emojiRef.get().timeout(const Duration(seconds: 5));
+    if (snapshot.exists) {
+      final data = snapshot.value;
+      final allEmojis = <String>[];
+
+      if (data is Map<dynamic, dynamic>) {
+        data.forEach((category, categoryData) {
+          if (categoryData is Map && categoryData['items'] != null) {
+            final items = categoryData['items'];
+
+            if (items is List) {
+              allEmojis.addAll(items.whereType<String>());
+            } else if (items is Map) {
+              items.forEach((_, emoji) {
+                if (emoji is String) {
+                  allEmojis.add(emoji);
+                }
+              });
+            }
+          }
         });
-      } else {
-        timer.cancel();
       }
-    });
+
+      if (mounted) {
+        setState(() {
+          _loadedEmojis.addAll(allEmojis);
+        });
+      }
+    } else {
+      debugPrint("No emojis found in Firebase.");
+    }
+  } on TimeoutException catch (_) {
+    debugPrint("Timeout: Firebase did not respond in time.");
+  } catch (e) {
+    debugPrint("Error loading emojis: $e");
   }
+}
+
 
   void _scroll(int direction) {
     if (!mounted || !_scrollController.hasClients) return;
@@ -112,46 +129,44 @@ class _EmojiPickerWidgetState extends State<EmojiPickerWidget> {
     }
   }
 
-@override
-Widget build(BuildContext context) {
-  return Container(
-    height: 250,
-    decoration: BoxDecoration(
-      color: Colors.grey[100],
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: GridView.builder(
-      controller: _scrollController,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 10,
-        childAspectRatio: 1.0,
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 250,
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        borderRadius: BorderRadius.circular(12),
       ),
-      padding: const EdgeInsets.all(12),
-      itemCount: _loadedEmojis.length,
-      itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () {
-            if (mounted && widget.onEmojiSelected != null) {
-              widget.onEmojiSelected(_loadedEmojis[index]);
-            }
-          },
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 100),
-            margin: const EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Colors.white,
-            ),
-            child: Center(
-              child: Text(
-                _loadedEmojis[index], 
-                style: const TextStyle(fontSize: 26),
+      child: _loadedEmojis.isEmpty
+          ? const Center(child: CircularProgressIndicator())
+          : GridView.builder(
+              controller: _scrollController,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 8,
+                childAspectRatio: 1.0,
               ),
+              padding: const EdgeInsets.all(12),
+              itemCount: _loadedEmojis.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () => widget.onEmojiSelected(_loadedEmojis[index]),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 100),
+                    margin: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                    ),
+                    child: Center(
+                      child: Text(
+                        _loadedEmojis[index], 
+                        style: const TextStyle(fontSize: 26),
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
-          ),
-        );
-      },
-    ),
-  );
-}
+    );
+  }
 }
