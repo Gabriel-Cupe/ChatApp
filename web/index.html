@@ -16,8 +16,45 @@
 
     <title>Chat App</title>
     <link rel="manifest" href="manifest.json" />
+
+    <style>
+      /* Pantalla de carga */
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+      }
+
+      .spinner {
+        border: 6px solid #eee;
+        border-top: 6px solid #4e8cff;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
+    <!-- Loader -->
+    <div id="loader">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Flutter -->
     <script src="flutter.js" defer></script>
     <script>
       window.addEventListener('load', function (ev) {
@@ -27,6 +64,12 @@
           },
           onEntrypointLoaded: function (engineInitializer) {
             engineInitializer.initializeEngine().then(function (appRunner) {
+              // Oculta el loader antes de correr la app
+              const loader = document.getElementById('loader');
+              if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 300);
+              }
               appRunner.runApp();
             });
           },
@@ -35,5 +78,3 @@
     </script>
   </body>
 </html>
-git config --global user.name "Gabriel-Cupe"
-git config --global user.email "gbcupe6@gmail.com"
