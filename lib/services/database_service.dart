@@ -91,10 +91,18 @@ class DatabaseService {
     }
     return null;
   }
+Future<void> markMessageAsSeen(String messageId, String recipientUsername) async {
+  // Verificar si el destinatario está en línea
+  final userRef = FirebaseDatabase.instance.ref().child('users').child(recipientUsername);
+  final snapshot = await userRef.child('online').get();
 
-  Future<void> markMessageAsSeen(String messageId) async {
+  if (snapshot.exists && snapshot.value == true) {
+    // Solo marcar como visto si el destinatario está en línea
     await _messagesRef.child(messageId).update({
       'isSeen': true,
     });
+  } else {
+    print('El destinatario no está en línea. No se puede marcar como visto.');
   }
+}
 }

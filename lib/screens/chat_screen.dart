@@ -12,6 +12,8 @@ import 'package:chat_app/chat_addons/scroll.dart';
 import 'package:chat_app/models/message_model.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/notis/timer_menu.dart';
+import 'package:chat_app/screens/login_screen.dart';
+import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/services/chat_message_service.dart';
 import 'package:chat_app/services/database_service.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,14 @@ class ChatScreen extends StatefulWidget {
   State<ChatScreen> createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
+
+  final UserService _userService = UserService(); // Servicio para manejar usuarios
+  List<User> _onlineUsers = []; // Lista de usuarios en línea
+  final AuthService _authService = AuthService();
+
+
+
   final TextEditingController _messageController = TextEditingController();
   final ChatMessageService _messageService = ChatMessageService(DatabaseService());
   final ScrollController _scrollController = ScrollController();
@@ -35,8 +44,6 @@ class _ChatScreenState extends State<ChatScreen> {
   List<Message> _messages = [];
   bool _isLoadingMore = false;
   bool _hasMore = true;
-  late StreamSubscription<List<Message>> _messagesSubscription;
-
   Message? _replyingTo;
   bool _showReplyPanel = false;
   dynamic _selectedImage;
@@ -46,28 +53,58 @@ class _ChatScreenState extends State<ChatScreen> {
 @override
 void initState() {
   super.initState();
+
+    WidgetsBinding.instance.addObserver(this); // Agregar el observador
+
   _isWeb = kIsWeb;
   _loadInitialMessages();
   enableScrollWithKeyboard(_scrollController);
 
+  // Marcar al usuario como en línea
+  _userService.setUserOnline(widget.user.username, true);
+
+  // Escuchar usuarios en línea
+  _userService.getOnlineUsers(widget.user.username).listen((users) {
+        setState(() {
+          _onlineUsers = users;
+        });
+
+  });
+
+
   final db = _messageService.databaseService;
 
   // Escuchar nuevos mensajes
-  db.newMessageStream.listen((event) {
-    if (event.snapshot.value != null) {
-      final newMessage = Message.fromMap(
-        event.snapshot.key!,
-        Map<String, dynamic>.from(event.snapshot.value as Map),
-      );
-      final exists = _messages.any((m) => m.id == newMessage.id);
-      if (!exists) {
-        setState(() {
-          _messages.add(newMessage);
-        });
-        scrollToBottom();
+// Escuchar nuevos mensajes
+
+bool _isAtBottom() {
+  if (!_scrollController.hasClients) return false;
+  return _scrollController.position.pixels >=
+      _scrollController.position.maxScrollExtent - 50;
+}
+
+db.newMessageStream.listen((event) {
+  if (event.snapshot.value != null) {
+    final newMessage = Message.fromMap(
+      event.snapshot.key!,
+      Map<String, dynamic>.from(event.snapshot.value as Map),
+    );
+    final exists = _messages.any((m) => m.id == newMessage.id);
+    if (!exists) {
+      setState(() {
+        _messages.add(newMessage);
+      });
+
+      // Si el usuario está viendo el chat, marcar el mensaje como visto
+      if (_isAtBottom()) {
+        _markVisibleMessagesAsSeen();
       }
+
+      // Opcional: desplazarse automáticamente al final
+      scrollToBottom();
     }
-  });
+  }
+});
 
   // Escuchar ediciones
   db.messageEditStream.listen((event) {
@@ -103,17 +140,37 @@ void initState() {
         _hasMore) {
       _loadMoreMessages();
     }
-  }
+      _markVisibleMessagesAsSeen();
 
-  Future<void> _loadInitialMessages() async {
-    final messages = await _messageService.getInitialMessages();
-    if (mounted) {
-      setState(() {
-        _messages = messages;
-      });
-    }
-    scrollToBottom();
   }
+void _markVisibleMessagesAsSeen() {
+  if (_scrollController.hasClients) {
+    for (var message in _messages) {
+      if (!message.isSeen) {
+        // Pasar el username del usuario actual como recipientUsername y el sender del mensaje
+        _messageService.markMessageAsSeen(message.id, widget.user.username, message.sender);
+      }
+    }
+  }
+}
+
+Future<void> _loadInitialMessages() async {
+  final messages = await _messageService.getInitialMessages();
+  if (mounted) {
+    setState(() {
+      _messages = messages;
+    });
+  }
+  scrollToBottom();
+
+  // Marcar mensajes no vistos como vistos
+  for (var message in messages) {
+    if (!message.isSeen) {
+      // Pasar el username del usuario actual como recipientUsername
+      _messageService.markMessageAsSeen(message.id, widget.user.username, message.sender);
+    }
+  }
+}
 
   Future<void> _loadMoreMessages() async {
     if (_messages.isEmpty) return;
@@ -139,6 +196,9 @@ void initState() {
     });
 
     _isLoadingMore = false;
+
+  _markVisibleMessagesAsSeen();
+
   }
 
   Future<void> _sendMessage() async {
@@ -290,24 +350,32 @@ void initState() {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text('Chat App', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
-          Row(
-            children: [
-              Container(
-                width: 10,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.lightGreenAccent,
-                  shape: BoxShape.circle,
-                  boxShadow: [BoxShadow(color: Colors.lightGreenAccent.withOpacity(0.5), blurRadius: 4, spreadRadius: 2)],
-                ),
+        Row(
+          children: [
+            Container(
+              width: 10,
+              height: 20,
+              decoration: BoxDecoration(
+                color: Colors.lightGreenAccent,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.lightGreenAccent.withOpacity(0.5),
+                    blurRadius: 4,
+                    spreadRadius: 2,
+                  ),
+                ],
               ),
-              const SizedBox(width: 6),
-              Text(
-                '${widget.user.displayName} • En línea',
-                style: TextStyle(fontSize: 10, color: Colors.white.withOpacity(0.9)),
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(width: 6),
+            Text(
+              _onlineUsers.isNotEmpty
+                  ? _onlineUsers.map((user) => user.displayName).join(', ') + ' • En línea'
+                  : 'Nadie en línea',
+              style: TextStyle(fontSize: 10, color: Colors.white.withOpacity(0.9)),
+            ),
+          ],
+        ),
         ],
       ),
       flexibleSpace: Container(
@@ -336,6 +404,12 @@ actions: [
       );
     },
   ),
+
+        IconButton(
+        icon: const Icon(Icons.logout, color: Colors.white),
+        tooltip: 'Cerrar sesión',
+        onPressed: _logout, // Llamar al método de logout
+      ),
 ],
 
     );
@@ -395,7 +469,9 @@ actions: [
 
   @override
   void dispose() {
-    _messagesSubscription.cancel();
+
+    WidgetsBinding.instance.removeObserver(this); // Eliminar el observador
+    _authService.handleAppClose(widget.user.username); // 
     _messageController.dispose();
     _scrollController.dispose();
     _focusNode.dispose();
@@ -403,5 +479,24 @@ actions: [
       html.Url.revokeObjectUrl(_imagePreviewUrl!);
     }
     super.dispose();
+  }
+
+@override
+void didChangeAppLifecycleState(AppLifecycleState state) {
+  if (state == AppLifecycleState.inactive || state == AppLifecycleState.detached) {
+    // Cambiar a offline cuando la app se cierra o queda inactiva
+    _authService.handleAppClose(widget.user.username);
+  } else if (state == AppLifecycleState.resumed) {
+    // Cambiar a online cuando la app vuelve a estar activa
+    _userService.setUserOnline(widget.user.username, true);
+  }
+}
+
+  void _logout() async {
+    await _authService.logout(widget.user.username); // Marcar como offline
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginScreen()), // Redirigir al LoginScreen
+    );
   }
 }

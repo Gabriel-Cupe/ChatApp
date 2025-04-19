@@ -1,3 +1,4 @@
+//import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/notis/message_listener.dart';
 import 'package:chat_app/notis/notification_service.dart';
 import 'package:chat_app/notis/timer.dart';
@@ -5,6 +6,14 @@ import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+
+//final userService = UserService();
+
+//void createInitialUsers() async {
+  //await userService.generateInitialUsers();
+  //print('Usuarios iniciales generados en Firebase.');
+//}
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +39,9 @@ class _MyAppState extends State<MyApp> {
 
     super.initState();
     _messageListener.startListening(); // Escucha mensajes de Firebase
-    PeriodicNotifier.start(5); // Inicia notificaciones periódicas (5 minutos por defecto)
+    PeriodicNotifier.start(5); 
+//createInitialUsers();     
+    // Inicia notificaciones periódicas (5 minutos por defecto)
     // En algún lugar de tu código de configuración:
 //initializeEmojiAndStickerDatabase();
   }

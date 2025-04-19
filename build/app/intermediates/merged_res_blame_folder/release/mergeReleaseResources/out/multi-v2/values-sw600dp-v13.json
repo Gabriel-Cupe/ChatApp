@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "me.naza.jandy.chat_app-mergeReleaseResources-44:/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "me.naza.jandy.chat_app-mergeReleaseResources-45:/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
                     "source": "/home/gabriel/.gradle/caches/8.10.2/transforms/8672542fff6e2103c63e7b98b328f638/transformed/appcompat-1.1.0/res/values-sw600dp-v13/values-sw600dp-v13.xml",

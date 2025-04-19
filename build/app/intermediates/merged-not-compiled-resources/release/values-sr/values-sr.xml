@@ -53,6 +53,15 @@
     <string name="common_signin_button_text">Пријави ме</string>
     <string name="common_signin_button_text_long">Пријави ме на Google</string>
     <string msgid="6083905920877235314" name="copy">"Копирај"</string>
+    <string name="exo_download_completed">Преузимање је завршено</string>
+    <string name="exo_download_description">Преузми</string>
+    <string name="exo_download_downloading">Преузима се</string>
+    <string name="exo_download_failed">Преузимање није успело</string>
+    <string name="exo_download_notification_channel_name">Преузимања</string>
+    <string name="exo_download_paused">Преузимања су паузирана</string>
+    <string name="exo_download_paused_for_network">Преузимања чекају на мрежу</string>
+    <string name="exo_download_paused_for_wifi">Преузимања чекају на WiFi</string>
+    <string name="exo_download_removing">Преузимања се уклањају</string>
     <string msgid="2427401033573778270" name="expand_button_title">"Напредно"</string>
     <string msgid="6573031135582639649" name="not_set">"Није подешено"</string>
     <string msgid="6685851473431805375" name="preference_copied">"Резиме „<ns1:g id="SUMMARY">%1$s</ns1:g>“ је копиран у привремену меморију."</string>

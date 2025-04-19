@@ -53,6 +53,15 @@
     <string name="common_signin_button_text">Ingia katika akaunti</string>
     <string name="common_signin_button_text_long">Ingia katika akaunti ukitumia Google</string>
     <string msgid="6083905920877235314" name="copy">"Nakili"</string>
+    <string name="exo_download_completed">Imepakuliwa</string>
+    <string name="exo_download_description">Pakua</string>
+    <string name="exo_download_downloading">Inapakua</string>
+    <string name="exo_download_failed">Imeshindwa kupakua</string>
+    <string name="exo_download_notification_channel_name">Vipakuliwa</string>
+    <string name="exo_download_paused">Imesimamisha shughuli ya kupakua</string>
+    <string name="exo_download_paused_for_network">Upakuaji unasubiri mtandao</string>
+    <string name="exo_download_paused_for_wifi">Upakuaji unasubiri Wi-Fi</string>
+    <string name="exo_download_removing">Inaondoa vipakuliwa</string>
     <string msgid="2427401033573778270" name="expand_button_title">"Mipangilio ya Kina"</string>
     <string msgid="6573031135582639649" name="not_set">"Haijawekwa"</string>
     <string msgid="6685851473431805375" name="preference_copied">"\"<ns1:g id="SUMMARY">%1$s</ns1:g>\" imenakiliwa kwenye ubao wa kunakili."</string>

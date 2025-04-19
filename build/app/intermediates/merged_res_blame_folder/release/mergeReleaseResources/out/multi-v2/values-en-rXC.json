@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "me.naza.jandy.chat_app-mergeReleaseResources-44:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "me.naza.jandy.chat_app-mergeReleaseResources-45:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
                     "source": "/home/gabriel/.gradle/caches/8.10.2/transforms/3db6d67d3957ef3306fe5dc8dc50642f/transformed/core-1.15.0/res/values-en-rXC/values-en-rXC.xml",

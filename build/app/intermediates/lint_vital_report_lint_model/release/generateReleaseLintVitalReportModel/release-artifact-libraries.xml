@@ -35,6 +35,9 @@
       name=":@@:sqflite_android::release"
       project=":sqflite_android"/>
   <library
+      name=":@@:video_player_android::release"
+      project=":video_player_android"/>
+  <library
       name="io.flutter:flutter_embedding_release:1.0.0-18b71d647a292a980abb405ac7d16fe1f0b20434@jar"
       jars="/home/gabriel/.gradle/caches/modules-2/files-2.1/io.flutter/flutter_embedding_release/1.0.0-18b71d647a292a980abb405ac7d16fe1f0b20434/e1f965c14eb9a096111654ae1a59480778f50cbc/flutter_embedding_release-1.0.0-18b71d647a292a980abb405ac7d16fe1f0b20434.jar"
       resolved="io.flutter:flutter_embedding_release:1.0.0-18b71d647a292a980abb405ac7d16fe1f0b20434"/>
@@ -735,6 +738,149 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="androidx.media3:media3-extractor:1.4.1@aar"
+      jars="/home/gabriel/.gradle/caches/8.10.2/transforms/933f00913e8c3f00215bddb9ce8fe576/transformed/jetified-media3-extractor-1.4.1/jars/classes.jar"
+      resolved="androidx.media3:media3-extractor:1.4.1"
+      folder="/home/gabriel/.gradle/caches/8.10.2/transforms/933f00913e8c3f00215bddb9ce8fe576/transformed/jetified-media3-extractor-1.4.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.media3:media3-container:1.4.1@aar"
+      jars="/home/gabriel/.gradle/caches/8.10.2/transforms/0dd982d66ff6e8c77a5c07a723a7b937/transformed/jetified-media3-container-1.4.1/jars/classes.jar"
+      resolved="androidx.media3:media3-container:1.4.1"
+      folder="/home/gabriel/.gradle/caches/8.10.2/transforms/0dd982d66ff6e8c77a5c07a723a7b937/transformed/jetified-media3-container-1.4.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.media3:media3-datasource:1.4.1@aar"
+      jars="/home/gabriel/.gradle/caches/8.10.2/transforms/cb32ab5f92a54c3259abb48b1c19908d/transformed/jetified-media3-datasource-1.4.1/jars/classes.jar"
+      resolved="androidx.media3:media3-datasource:1.4.1"
+      folder="/home/gabriel/.gradle/caches/8.10.2/transforms/cb32ab5f92a54c3259abb48b1c19908d/transformed/jetified-media3-datasource-1.4.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.media3:media3-decoder:1.4.1@aar"
+      jars="/home/gabriel/.gradle/caches/8.10.2/transforms/fc6bc456096064ea4dd0086b69e40c6a/transformed/jetified-media3-decoder-1.4.1/jars/classes.jar"
+      resolved="androidx.media3:media3-decoder:1.4.1"
+      folder="/home/gabriel/.gradle/caches/8.10.2/transforms/fc6bc456096064ea4dd0086b69e40c6a/transformed/jetified-media3-decoder-1.4.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.media3:media3-database:1.4.1@aar"
+      jars="/home/gabriel/.gradle/caches/8.10.2/transforms/6d5ffe4259311895dbfaf57dd1da72eb/transformed/jetified-media3-database-1.4.1/jars/classes.jar"
+      resolved="androidx.media3:media3-database:1.4.1"
+      folder="/home/gabriel/.gradle/caches/8.10.2/transforms/6d5ffe4259311895dbfaf57dd1da72eb/transformed/jetified-media3-database-1.4.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.media3:media3-common:1.4.1@aar"
+      jars="/home/gabriel/.gradle/caches/8.10.2/transforms/3f9faf38ac4fd86850936d743e286e37/transformed/jetified-media3-common-1.4.1/jars/classes.jar"
+      resolved="androidx.media3:media3-common:1.4.1"
+      folder="/home/gabriel/.gradle/caches/8.10.2/transforms/3f9faf38ac4fd86850936d743e286e37/transformed/jetified-media3-common-1.4.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.media3:media3-exoplayer-hls:1.4.1@aar"
+      jars="/home/gabriel/.gradle/caches/8.10.2/transforms/304fcf708ff4db34b163d14642ca7829/transformed/jetified-media3-exoplayer-hls-1.4.1/jars/classes.jar"
+      resolved="androidx.media3:media3-exoplayer-hls:1.4.1"
+      folder="/home/gabriel/.gradle/caches/8.10.2/transforms/304fcf708ff4db34b163d14642ca7829/transformed/jetified-media3-exoplayer-hls-1.4.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.media3:media3-exoplayer-dash:1.4.1@aar"
+      jars="/home/gabriel/.gradle/caches/8.10.2/transforms/1255811d552df0ab11edac709e575067/transformed/jetified-media3-exoplayer-dash-1.4.1/jars/classes.jar"
+      resolved="androidx.media3:media3-exoplayer-dash:1.4.1"
+      folder="/home/gabriel/.gradle/caches/8.10.2/transforms/1255811d552df0ab11edac709e575067/transformed/jetified-media3-exoplayer-dash-1.4.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.media3:media3-exoplayer-rtsp:1.4.1@aar"
+      jars="/home/gabriel/.gradle/caches/8.10.2/transforms/e409b1253860368c42e914856387e032/transformed/jetified-media3-exoplayer-rtsp-1.4.1/jars/classes.jar"
+      resolved="androidx.media3:media3-exoplayer-rtsp:1.4.1"
+      folder="/home/gabriel/.gradle/caches/8.10.2/transforms/e409b1253860368c42e914856387e032/transformed/jetified-media3-exoplayer-rtsp-1.4.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.media3:media3-exoplayer-smoothstreaming:1.4.1@aar"
+      jars="/home/gabriel/.gradle/caches/8.10.2/transforms/560c0ff055d02b436c8ba7d5949962b4/transformed/jetified-media3-exoplayer-smoothstreaming-1.4.1/jars/classes.jar"
+      resolved="androidx.media3:media3-exoplayer-smoothstreaming:1.4.1"
+      folder="/home/gabriel/.gradle/caches/8.10.2/transforms/560c0ff055d02b436c8ba7d5949962b4/transformed/jetified-media3-exoplayer-smoothstreaming-1.4.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.media3:media3-exoplayer:1.4.1@aar"
+      jars="/home/gabriel/.gradle/caches/8.10.2/transforms/241f09d4f7b6d8c3bbb37591b0b6c1ad/transformed/jetified-media3-exoplayer-1.4.1/jars/classes.jar"
+      resolved="androidx.media3:media3-exoplayer:1.4.1"
+      folder="/home/gabriel/.gradle/caches/8.10.2/transforms/241f09d4f7b6d8c3bbb37591b0b6c1ad/transformed/jetified-media3-exoplayer-1.4.1"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="androidx.appcompat:appcompat-resources:1.1.0@aar"
       jars="/home/gabriel/.gradle/caches/8.10.2/transforms/0774b2cdbbb3e8e500618a693ab62325/transformed/jetified-appcompat-resources-1.1.0/jars/classes.jar"
       resolved="androidx.appcompat:appcompat-resources:1.1.0"
@@ -996,9 +1142,13 @@
       jars="/home/gabriel/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.36.0/227d4d4957ccc3dc5761bd897e3a0ee587e750a7/error_prone_annotations-2.36.0.jar"
       resolved="com.google.errorprone:error_prone_annotations:2.36.0"/>
   <library
-      name="com.google.guava:listenablefuture:1.0@jar"
-      jars="/home/gabriel/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/1.0/c949a840a6acbc5268d088e47b04177bf90b3cad/listenablefuture-1.0.jar"
-      resolved="com.google.guava:listenablefuture:1.0"/>
+      name="com.google.guava:guava:33.0.0-android@jar"
+      jars="/home/gabriel/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.0.0-android/cfbbdc54f232feedb85746aeeea0722f5244bb9a/guava-33.0.0-android.jar"
+      resolved="com.google.guava:guava:33.0.0-android"/>
+  <library
+      name="com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava@jar"
+      jars="/home/gabriel/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar"
+      resolved="com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava"/>
   <library
       name="com.google.firebase:firebase-annotations:16.2.0@jar"
       jars="/home/gabriel/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-annotations/16.2.0/ba0806703ca285d03fa9c888b5868f101134a501/firebase-annotations-16.2.0.jar"
@@ -1007,4 +1157,8 @@
       name="javax.inject:javax.inject:1@jar"
       jars="/home/gabriel/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
       resolved="javax.inject:javax.inject:1"/>
+  <library
+      name="com.google.guava:failureaccess:1.0.2@jar"
+      jars="/home/gabriel/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.2/c4a06a64e650562f30b7bf9aaec1bfed43aca12b/failureaccess-1.0.2.jar"
+      resolved="com.google.guava:failureaccess:1.0.2"/>
 </libraries>

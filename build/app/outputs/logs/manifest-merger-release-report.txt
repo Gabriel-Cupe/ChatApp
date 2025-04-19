@@ -61,6 +61,7 @@ MERGED from [:firebase_core] /home/gabriel/Documentos/ChatApp/build/firebase_cor
 MERGED from [:flutter_plugin_android_lifecycle] /home/gabriel/Documentos/ChatApp/build/flutter_plugin_android_lifecycle/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider_android] /home/gabriel/Documentos/ChatApp/build/path_provider_android/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:2:1-7:12
 MERGED from [:sqflite_android] /home/gabriel/Documentos/ChatApp/build/sqflite_android/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:2:1-7:12
+MERGED from [:video_player_android] /home/gabriel/Documentos/ChatApp/build/video_player_android/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.preference:preference:1.2.1] /home/gabriel/.gradle/caches/8.10.2/transforms/6fec79dfcef552889e3835cc7bab572a/transformed/preference-1.2.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] /home/gabriel/.gradle/caches/8.10.2/transforms/8672542fff6e2103c63e7b98b328f638/transformed/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment-ktx:1.7.1] /home/gabriel/.gradle/caches/8.10.2/transforms/0c2fe07ca1553c701c96a682f9b78a46/transformed/jetified-fragment-ktx-1.7.1/AndroidManifest.xml:2:1-7:12
@@ -100,6 +101,17 @@ MERGED from [com.google.android.gms:play-services-basement:18.3.0] /home/gabriel
 MERGED from [androidx.fragment:fragment:1.7.1] /home/gabriel/.gradle/caches/8.10.2/transforms/504a3b9bc759ca6028567aaea36c5498/transformed/fragment-1.7.1/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.core:core-ktx:1.15.0] /home/gabriel/.gradle/caches/8.10.2/transforms/53605865ebe91478b8a5af53e4b766ef/transformed/jetified-core-ktx-1.15.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.media:media:1.1.0] /home/gabriel/.gradle/caches/8.10.2/transforms/707932e288a3bd88fb4a428bc13cc00f/transformed/media-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media3:media3-extractor:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/933f00913e8c3f00215bddb9ce8fe576/transformed/jetified-media3-extractor-1.4.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-container:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/0dd982d66ff6e8c77a5c07a723a7b937/transformed/jetified-media3-container-1.4.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-datasource:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/cb32ab5f92a54c3259abb48b1c19908d/transformed/jetified-media3-datasource-1.4.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-decoder:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/fc6bc456096064ea4dd0086b69e40c6a/transformed/jetified-media3-decoder-1.4.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-database:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/6d5ffe4259311895dbfaf57dd1da72eb/transformed/jetified-media3-database-1.4.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-common:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/3f9faf38ac4fd86850936d743e286e37/transformed/jetified-media3-common-1.4.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media3:media3-exoplayer-hls:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/304fcf708ff4db34b163d14642ca7829/transformed/jetified-media3-exoplayer-hls-1.4.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-exoplayer-dash:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/1255811d552df0ab11edac709e575067/transformed/jetified-media3-exoplayer-dash-1.4.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-exoplayer-rtsp:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/e409b1253860368c42e914856387e032/transformed/jetified-media3-exoplayer-rtsp-1.4.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-exoplayer-smoothstreaming:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/560c0ff055d02b436c8ba7d5949962b4/transformed/jetified-media3-exoplayer-smoothstreaming-1.4.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-exoplayer:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/241f09d4f7b6d8c3bbb37591b0b6c1ad/transformed/jetified-media3-exoplayer-1.4.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/93427648a2a3d956663464cf420248d0/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0774b2cdbbb3e8e500618a693ab62325/transformed/jetified-appcompat-resources-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/2ff4a9d3bdd4e714f0b3a4ef81cefccc/transformed/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -220,6 +232,8 @@ MERGED from [:path_provider_android] /home/gabriel/Documentos/ChatApp/build/path
 MERGED from [:path_provider_android] /home/gabriel/Documentos/ChatApp/build/path_provider_android/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite_android] /home/gabriel/Documentos/ChatApp/build/sqflite_android/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite_android] /home/gabriel/Documentos/ChatApp/build/sqflite_android/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:5:5-44
+MERGED from [:video_player_android] /home/gabriel/Documentos/ChatApp/build/video_player_android/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:5:5-44
+MERGED from [:video_player_android] /home/gabriel/Documentos/ChatApp/build/video_player_android/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:5:5-44
 MERGED from [androidx.preference:preference:1.2.1] /home/gabriel/.gradle/caches/8.10.2/transforms/6fec79dfcef552889e3835cc7bab572a/transformed/preference-1.2.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.preference:preference:1.2.1] /home/gabriel/.gradle/caches/8.10.2/transforms/6fec79dfcef552889e3835cc7bab572a/transformed/preference-1.2.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.1.0] /home/gabriel/.gradle/caches/8.10.2/transforms/8672542fff6e2103c63e7b98b328f638/transformed/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
@@ -298,6 +312,28 @@ MERGED from [androidx.core:core-ktx:1.15.0] /home/gabriel/.gradle/caches/8.10.2/
 MERGED from [androidx.core:core-ktx:1.15.0] /home/gabriel/.gradle/caches/8.10.2/transforms/53605865ebe91478b8a5af53e4b766ef/transformed/jetified-core-ktx-1.15.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.media:media:1.1.0] /home/gabriel/.gradle/caches/8.10.2/transforms/707932e288a3bd88fb4a428bc13cc00f/transformed/media-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.media:media:1.1.0] /home/gabriel/.gradle/caches/8.10.2/transforms/707932e288a3bd88fb4a428bc13cc00f/transformed/media-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media3:media3-extractor:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/933f00913e8c3f00215bddb9ce8fe576/transformed/jetified-media3-extractor-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-extractor:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/933f00913e8c3f00215bddb9ce8fe576/transformed/jetified-media3-extractor-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-container:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/0dd982d66ff6e8c77a5c07a723a7b937/transformed/jetified-media3-container-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-container:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/0dd982d66ff6e8c77a5c07a723a7b937/transformed/jetified-media3-container-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-datasource:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/cb32ab5f92a54c3259abb48b1c19908d/transformed/jetified-media3-datasource-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-datasource:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/cb32ab5f92a54c3259abb48b1c19908d/transformed/jetified-media3-datasource-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-decoder:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/fc6bc456096064ea4dd0086b69e40c6a/transformed/jetified-media3-decoder-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-decoder:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/fc6bc456096064ea4dd0086b69e40c6a/transformed/jetified-media3-decoder-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-database:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/6d5ffe4259311895dbfaf57dd1da72eb/transformed/jetified-media3-database-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-database:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/6d5ffe4259311895dbfaf57dd1da72eb/transformed/jetified-media3-database-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-common:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/3f9faf38ac4fd86850936d743e286e37/transformed/jetified-media3-common-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-common:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/3f9faf38ac4fd86850936d743e286e37/transformed/jetified-media3-common-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer-hls:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/304fcf708ff4db34b163d14642ca7829/transformed/jetified-media3-exoplayer-hls-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer-hls:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/304fcf708ff4db34b163d14642ca7829/transformed/jetified-media3-exoplayer-hls-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer-dash:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/1255811d552df0ab11edac709e575067/transformed/jetified-media3-exoplayer-dash-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer-dash:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/1255811d552df0ab11edac709e575067/transformed/jetified-media3-exoplayer-dash-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer-rtsp:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/e409b1253860368c42e914856387e032/transformed/jetified-media3-exoplayer-rtsp-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer-rtsp:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/e409b1253860368c42e914856387e032/transformed/jetified-media3-exoplayer-rtsp-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer-smoothstreaming:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/560c0ff055d02b436c8ba7d5949962b4/transformed/jetified-media3-exoplayer-smoothstreaming-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer-smoothstreaming:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/560c0ff055d02b436c8ba7d5949962b4/transformed/jetified-media3-exoplayer-smoothstreaming-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/241f09d4f7b6d8c3bbb37591b0b6c1ad/transformed/jetified-media3-exoplayer-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/241f09d4f7b6d8c3bbb37591b0b6c1ad/transformed/jetified-media3-exoplayer-1.4.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/93427648a2a3d956663464cf420248d0/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/93427648a2a3d956663464cf420248d0/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0774b2cdbbb3e8e500618a693ab62325/transformed/jetified-appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
@@ -434,6 +470,10 @@ ADDED from [:firebase_core] /home/gabriel/Documentos/ChatApp/build/firebase_core
 		ADDED from [:firebase_core] /home/gabriel/Documentos/ChatApp/build/firebase_core/intermediates/merged_manifest/release/processReleaseManifest/AndroidManifest.xml:10:17-124
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-database:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0617b6009ae4fedbfac8e84659b89b32/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:22:5-79
+MERGED from [androidx.media3:media3-common:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/3f9faf38ac4fd86850936d743e286e37/transformed/jetified-media3-common-1.4.1/AndroidManifest.xml:22:5-79
+MERGED from [androidx.media3:media3-common:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/3f9faf38ac4fd86850936d743e286e37/transformed/jetified-media3-common-1.4.1/AndroidManifest.xml:22:5-79
+MERGED from [androidx.media3:media3-exoplayer:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/241f09d4f7b6d8c3bbb37591b0b6c1ad/transformed/jetified-media3-exoplayer-1.4.1/AndroidManifest.xml:22:5-79
+MERGED from [androidx.media3:media3-exoplayer:1.4.1] /home/gabriel/.gradle/caches/8.10.2/transforms/241f09d4f7b6d8c3bbb37591b0b6c1ad/transformed/jetified-media3-exoplayer-1.4.1/AndroidManifest.xml:22:5-79
 	android:name
 		ADDED from [com.google.firebase:firebase-database:21.0.0] /home/gabriel/.gradle/caches/8.10.2/transforms/0617b6009ae4fedbfac8e84659b89b32/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:22:22-76
 uses-permission#android.permission.INTERNET

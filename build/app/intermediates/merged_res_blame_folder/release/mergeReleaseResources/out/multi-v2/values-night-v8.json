@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "me.naza.jandy.chat_app-mergeReleaseResources-44:/values-night-v8/values-night-v8.xml",
+            "outputFile": "me.naza.jandy.chat_app-mergeReleaseResources-45:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "/home/gabriel/.gradle/caches/8.10.2/transforms/8672542fff6e2103c63e7b98b328f638/transformed/appcompat-1.1.0/res/values-night-v8/values-night-v8.xml",

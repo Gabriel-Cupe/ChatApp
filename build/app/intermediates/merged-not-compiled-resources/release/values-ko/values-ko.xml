@@ -53,6 +53,15 @@
     <string name="common_signin_button_text">로그인</string>
     <string name="common_signin_button_text_long">Google 계정으로 로그인</string>
     <string msgid="6083905920877235314" name="copy">"복사"</string>
+    <string name="exo_download_completed">다운로드 완료</string>
+    <string name="exo_download_description">다운로드</string>
+    <string name="exo_download_downloading">다운로드 중</string>
+    <string name="exo_download_failed">다운로드 실패</string>
+    <string name="exo_download_notification_channel_name">다운로드</string>
+    <string name="exo_download_paused">다운로드 일시중지됨</string>
+    <string name="exo_download_paused_for_network">다운로드를 위해 네트워크 연결 대기 중</string>
+    <string name="exo_download_paused_for_wifi">다운로드를 위해 Wi-Fi 연결 대기 중</string>
+    <string name="exo_download_removing">다운로드 항목 삭제 중</string>
     <string msgid="2427401033573778270" name="expand_button_title">"고급"</string>
     <string msgid="6573031135582639649" name="not_set">"설정되지 않음"</string>
     <string msgid="6685851473431805375" name="preference_copied">"\'<ns1:g id="SUMMARY">%1$s</ns1:g>\'이(가) 클립보드에 복사되었습니다."</string>

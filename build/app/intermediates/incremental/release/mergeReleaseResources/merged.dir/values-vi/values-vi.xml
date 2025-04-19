@@ -53,6 +53,15 @@
     <string name="common_signin_button_text">Đăng nhập</string>
     <string name="common_signin_button_text_long">Đăng nhập bằng Google</string>
     <string msgid="6083905920877235314" name="copy">"Sao chép"</string>
+    <string name="exo_download_completed">Đã hoàn tất tải xuống</string>
+    <string name="exo_download_description">Tải xuống</string>
+    <string name="exo_download_downloading">Đang tải xuống</string>
+    <string name="exo_download_failed">Không tải xuống được</string>
+    <string name="exo_download_notification_channel_name">Tài nguyên đã tải xuống</string>
+    <string name="exo_download_paused">Đã tạm dừng tải xuống</string>
+    <string name="exo_download_paused_for_network">Đang chờ có mạng để tải xuống</string>
+    <string name="exo_download_paused_for_wifi">Đang chờ có Wi-Fi để tải xuống</string>
+    <string name="exo_download_removing">Đang xóa các mục đã tải xuống</string>
     <string msgid="2427401033573778270" name="expand_button_title">"Nâng cao"</string>
     <string msgid="6573031135582639649" name="not_set">"Chưa đặt"</string>
     <string msgid="6685851473431805375" name="preference_copied">"Đã sao chép \"<ns1:g id="SUMMARY">%1$s</ns1:g>\" vào bảng nhớ tạm."</string>

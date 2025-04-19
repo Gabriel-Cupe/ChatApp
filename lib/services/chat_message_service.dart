@@ -6,8 +6,6 @@ class ChatMessageService {
 
   ChatMessageService(this.databaseService);
 
-  // El stream global fue eliminado para evitar lags
-
   Future<void> sendMessage({
     required String sender,
     required String text,
@@ -30,7 +28,12 @@ class ChatMessageService {
     return databaseService.loadMoreMessages(beforeTimestamp, limit: limit);
   }
 
-  Future<void> markMessageAsSeen(String messageId) async {
-    await databaseService.markMessageAsSeen(messageId);
+  Future<void> markMessageAsSeen(String messageId, String recipientUsername, String senderUsername) async {
+    // Verificar que el mensaje no sea del mismo usuario
+    if (recipientUsername != senderUsername) {
+      await databaseService.markMessageAsSeen(messageId, recipientUsername);
+    } else {
+      print('No puedes marcar como visto tus propios mensajes.');
+    }
   }
 }

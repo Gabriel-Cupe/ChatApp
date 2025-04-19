@@ -53,6 +53,15 @@
     <string name="common_signin_button_text">Skrá inn</string>
     <string name="common_signin_button_text_long">Skrá inn með Google</string>
     <string msgid="6083905920877235314" name="copy">"Afrita"</string>
+    <string name="exo_download_completed">Niðurhali lokið</string>
+    <string name="exo_download_description">Sækja</string>
+    <string name="exo_download_downloading">Sækir</string>
+    <string name="exo_download_failed">Niðurhal mistókst</string>
+    <string name="exo_download_notification_channel_name">Niðurhal</string>
+    <string name="exo_download_paused">Niðurhöl í bið</string>
+    <string name="exo_download_paused_for_network">Niðurhöl bíða eftir netkerfi</string>
+    <string name="exo_download_paused_for_wifi">Niðurhöl bíða eftir WiFi</string>
+    <string name="exo_download_removing">Fjarlægir niðurhal</string>
     <string msgid="2427401033573778270" name="expand_button_title">"Ítarlegt"</string>
     <string msgid="6573031135582639649" name="not_set">"Ekki stillt"</string>
     <string msgid="6685851473431805375" name="preference_copied">"„<ns1:g id="SUMMARY">%1$s</ns1:g>“ afritað á klippiborðið."</string>
